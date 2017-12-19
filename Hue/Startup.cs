@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hue.Managers;
+using Hue.Managers.Interfaces;
+using Hue.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +27,10 @@ namespace Hue
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            //Add interfaces
+            services.AddTransient<IApiRequestManager, ApiRequestManager>();
+            services.AddTransient<IHueApiLightsManager, HueApiLightsManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +40,8 @@ namespace Hue
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware<AuthenticationMiddleWare>();
 
             app.UseMvc();
         }
