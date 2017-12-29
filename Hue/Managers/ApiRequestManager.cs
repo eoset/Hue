@@ -11,7 +11,7 @@ namespace Hue.Managers
 {
     public class ApiRequestManager : IApiRequestManager
     {
-        public string PerformGetRequest(Uri uri, string endpoint)
+        public string PerformGetRequest(Uri uri)
         {
             try
             {
@@ -19,7 +19,7 @@ namespace Hue.Managers
 
                 using (var client = new WebClient())
                 {
-                    client.BaseAddress = $"{uri}/{endpoint}";
+                    client.BaseAddress = $"{uri}";
                     response = client.DownloadString(client.BaseAddress);
                 }
 
@@ -32,7 +32,7 @@ namespace Hue.Managers
             }
         }
 
-        public string PerformGetRequestWithParameter(Uri uri, string endpoint, string parameter)
+        public string PerformGetRequestWithParameter(Uri uri, string parameter)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace Hue.Managers
 
                 using (var client = new WebClient())
                 {
-                    client.BaseAddress = $"{uri}/{endpoint}/{parameter}";
+                    client.BaseAddress = $"{uri}/{parameter}";
                     response = client.DownloadString(client.BaseAddress);
                 }
 

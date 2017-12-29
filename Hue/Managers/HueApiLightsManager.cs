@@ -13,7 +13,7 @@ namespace Hue.Managers
     {
         private readonly IApiRequestManager apiRequestManager;
 
-        private readonly Uri apiBaseUri = new Uri("http://localhost:8090/api/newdeveloper/");
+        private readonly Uri apiBaseUri = new Uri("http://192.168.1.32/api/FqPWHdQpylho6msesU1fUbhLwn6UqkgZW98jsD-b/lights");
         public HueApiLightsManager(IApiRequestManager apiRequestManager)
         {
             this.apiRequestManager = apiRequestManager;
@@ -21,7 +21,7 @@ namespace Hue.Managers
 
         IDictionary<string, Light> IHueApiLightsManager.GetLights()
         {
-            var response = apiRequestManager.PerformGetRequest(apiBaseUri, "lights");
+            var response = apiRequestManager.PerformGetRequest(apiBaseUri);
             var lights = JsonConvert.DeserializeObject<IDictionary<string, Light>>(response);
 
             return lights;
@@ -29,7 +29,7 @@ namespace Hue.Managers
 
         public Light GetLight(string id)
         {
-            var response = apiRequestManager.PerformGetRequestWithParameter(apiBaseUri, "lights", id);
+            var response = apiRequestManager.PerformGetRequestWithParameter(apiBaseUri, id);
             var lights = JsonConvert.DeserializeObject<Light>(response);
 
             return lights;

@@ -42,7 +42,7 @@ namespace Hue.Controllers
         {
             this.hueApiLightsManager.TurnOnLight(id);
 
-            return Ok("hej");
+            return Ok($"state: on");
         }
 
         [Route("/api/lights/{id}/off")]
@@ -51,7 +51,7 @@ namespace Hue.Controllers
         {
             this.hueApiLightsManager.TurnOffLight(id);
 
-            return Ok("hej");
+            return Ok($"state: off");
         }
     }
 }

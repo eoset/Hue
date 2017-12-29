@@ -7,8 +7,8 @@ namespace Hue.Managers.Interfaces
 {
     public interface IApiRequestManager
     {
-        string PerformGetRequest(Uri uri, string endpoint);
-        string PerformGetRequestWithParameter(Uri uri, string endpoint, string parameter);
+        string PerformGetRequest(Uri uri);
+        string PerformGetRequestWithParameter(Uri uri, string parameter);
         string PerformPutRequest(Uri uri, string endpoint, string parameter, object body);
     }
 }
